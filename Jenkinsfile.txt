@@ -1,0 +1,19 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Pull Develop Branch') {
+            steps {
+                checkout scm
+
+                sh '''
+                    mkdir -p /tmp/develop-branch-content
+                    cp -r "$WORKSPACE"/. /tmp/develop-branch-content/
+                    echo "Files copied successfully"
+                    ls -la /tmp/develop-branch-content
+                '''
+            }
+        }
+    }
+}
